@@ -106,4 +106,42 @@ broom::glance(fit)
 ```
 
 
+## Diagnostics
+
+```{r}
+modelr::add_residuals(nyc_airbnb, fit) %>% 
+  ggplot(aes(x = borough, y = resid)) +
+  geom_violin() +
+  ylim(-500, 1500)
+
+nyc_airbnb %>% 
+  modelr::add_residuals(fit) %>% 
+  ggplot(aes(x = stars, y = resid)) +
+  geom_point() +
+  facet_wrap(. ~ borough)
+  
+```
+
+This regrssion diagnostic shows problems with the regression. We need to go back and check our hypothesis and the type of regression chosen. 
+
+## Hypothesis testing 
+
+THIS DOES T-TEST BY DEFAULT 
+```{r}
+fit %>% 
+  broom::tidy()
+  
+```
+
+what about the significance of the borough 
+
+We need to do an ANOVA 
+
+```{r}
+fit_null = lm(price ~ stars, data = nyc_airbnb)
+fit_alt = lm(price ~ stars + borough, data = nyc_airbnb)
+
+anova(fit_null, fit_alt) %>% 
+  broom::tidy()
+```
 
