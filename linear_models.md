@@ -39,12 +39,8 @@ scale_fill_discrete = scale_fill_viridis_d
 ## 
 
 ``` r
-data("nuc_airbnb")
-```
+data("nyc_airbnb")
 
-    ## Warning in data("nuc_airbnb"): data set 'nuc_airbnb' not found
-
-``` r
 nyc_airbnb = 
   nyc_airbnb %>% 
   mutate(stars = review_scores_location / 2) %>% 

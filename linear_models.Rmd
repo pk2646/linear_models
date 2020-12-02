@@ -26,7 +26,7 @@ scale_fill_discrete = scale_fill_viridis_d
 
 ## 
 ```{r}
-data("nuc_airbnb")
+data("nyc_airbnb")
 
 nyc_airbnb = 
   nyc_airbnb %>% 
